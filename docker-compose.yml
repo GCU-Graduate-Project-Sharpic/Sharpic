@@ -29,5 +29,5 @@ services:
   
   imagesr:
     build:
-      dockerfile: ./ImageSR/Dockerfile
+      dockerfile: ./imageSR.Dockerfile
     restart: always
