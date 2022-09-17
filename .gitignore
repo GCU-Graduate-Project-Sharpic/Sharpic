@@ -1,4 +1,7 @@
 # other project files
-Frontend/
-Backend/
-ImageSR/
+.vscode
+
+/Frontend
+/Backend
+/ImageSR
+/VideoSR
