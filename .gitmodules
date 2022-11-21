@@ -1,0 +1,9 @@
+[submodule "server"]
+	path = server
+	url = https://github.com/GCU-Sharpic/sharpic-server.git
+[submodule "imagesr"]
+	path = imagesr
+	url = https://github.com/GCU-Sharpic/sharpic-imagesr.git
+[submodule "web"]
+	path = web
+	url = https://github.com/GCU-Sharpic/sharpic-web.git
