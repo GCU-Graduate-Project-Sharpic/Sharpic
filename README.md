@@ -1,4 +1,3 @@
-Welcome to the Sharpic wiki!
 ## Welcome to Sharpic Repository!
 
 This repository is for the **integration** of the Sharpic project.

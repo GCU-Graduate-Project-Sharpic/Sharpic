@@ -8,26 +8,34 @@ services:
     image: postgres
     volumes:
       - user_data:/var/lib/postgresql/data
-      - ./initdb:/docker-entrypoint-initdb.d
+      - ./server/initdb:/docker-entrypoint-initdb.d
     restart: always
     environment:
       POSTGRES_PASSWORD: secret
       POSTGRES_DB: Sharpic
       TZ: Asia/Seoul
   
-  app:
+  server:
     build: 
-      dockerfile: ./app.Dockerfile
+      dockerfile: ./server/Dockerfile
     environment:
       POSTGRES_DB: Sharpic
       POSTGRES_HOST: postgresql
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: secret
+      DOMAIN: localhost
     restart: always
     ports:
       - 8005:8005
-  
-  imagesr:
-    build:
-      dockerfile: ./imageSR.Dockerfile
+
+  web:
+    build: 
+      dockerfile: ./web/Dockerfile
     restart: always
+    ports:
+      - 8007:80
+  
+  # imagesr:
+  #   build:
+  #     dockerfile: ./imagesr/Dockerfile
+  #   restart: always
