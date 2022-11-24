@@ -2,6 +2,7 @@ version: '3.8'
 
 volumes:
   user_data:
+  images:
 
 services:
   postgresql:
@@ -11,26 +12,32 @@ services:
       - ./server/initdb:/docker-entrypoint-initdb.d
     restart: always
     environment:
-      POSTGRES_PASSWORD: secret
+      POSTGRES_PASSWORD: sharpgcu75!@
       POSTGRES_DB: Sharpic
       TZ: Asia/Seoul
+    ports:
+      - 5432:5432
   
   server:
     build: 
-      dockerfile: ./server/Dockerfile
+      context: ./server
+      dockerfile: ./Dockerfile
+    volumes:
+      - images:/images
     environment:
       POSTGRES_DB: Sharpic
       POSTGRES_HOST: postgresql
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: secret
-      DOMAIN: localhost
+      POSTGRES_PASSWORD: sharpgcu75!@
+      DOMAIN: sharpic.chromato99.com
     restart: always
     ports:
       - 8005:8005
 
   web:
     build: 
-      dockerfile: ./web/Dockerfile
+      context: ./web
+      dockerfile: ./Dockerfile
     restart: always
     ports:
       - 8007:80
