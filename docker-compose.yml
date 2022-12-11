@@ -2,32 +2,44 @@ version: '3.8'
 
 volumes:
   user_data:
+  images:
 
 services:
   postgresql:
     image: postgres
     volumes:
       - user_data:/var/lib/postgresql/data
-      - ./initdb:/docker-entrypoint-initdb.d
+      - ./server/initdb:/docker-entrypoint-initdb.d
     restart: always
     environment:
-      POSTGRES_PASSWORD: secret
+      POSTGRES_PASSWORD: sharpgcu75!@
       POSTGRES_DB: Sharpic
       TZ: Asia/Seoul
+    ports:
+      - 5432:5432
   
-  app:
+  server:
     build: 
-      dockerfile: ./app.Dockerfile
+      context: ./server
+      dockerfile: ./Dockerfile
+    volumes:
+      - images:/images
     environment:
       POSTGRES_DB: Sharpic
       POSTGRES_HOST: postgresql
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: secret
+      POSTGRES_PASSWORD: sharpgcu75!@
+    restart: always
+
+  web:
+    build: 
+      context: ./web
+      dockerfile: ./Dockerfile
     restart: always
     ports:
-      - 8005:8005
+      - 8007:80
   
-  imagesr:
-    build:
-      dockerfile: ./imageSR.Dockerfile
-    restart: always
+  # imagesr:
+  #   build:
+  #     dockerfile: ./imagesr/Dockerfile
+  #   restart: always

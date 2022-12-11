@@ -1,4 +1,3 @@
-Welcome to the Sharpic wiki!
 ## Welcome to Sharpic Repository!
 
 This repository is for the **integration** of the Sharpic project.
@@ -13,6 +12,26 @@ The super resolution is done using the **RealSR** project. The user can then dow
 The database is built using **PostgreSQL**.   
 The frontend is built using **HTML**, **CSS**, and **JavaScript**.   
 The backend is built using **Python** and **Django**.  
+
+## Run on localhost
+
+```zsh
+git clone --recurse-submodules https://github.com/GCU-Sharpic/sharpic.git
+make run-docker
+```
+
+## For development
+
+```zsh
+git clone --recurse-submodules https://github.com/GCU-Sharpic/sharpic.git
+
+# Set submodules as your forked repo
+cd <submodule>
+git remote set-url origin <your forked repo>
+
+# Test docker run
+make run-docker
+```
 
 Simple usage:
 1. Clone the repository
