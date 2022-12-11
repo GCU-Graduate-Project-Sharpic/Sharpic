@@ -13,6 +13,26 @@ The database is built using **PostgreSQL**.
 The frontend is built using **HTML**, **CSS**, and **JavaScript**.   
 The backend is built using **Python** and **Django**.  
 
+## Run on localhost
+
+```zsh
+git clone --recurse-submodules https://github.com/GCU-Sharpic/sharpic.git
+make run-docker
+```
+
+## For development
+
+```zsh
+git clone --recurse-submodules https://github.com/GCU-Sharpic/sharpic.git
+
+# Set submodules as your forked repo
+cd <submodule>
+git remote set-url origin <your forked repo>
+
+# Test docker run
+make run-docker
+```
+
 Simple usage:
 1. Clone the repository
 2. Install the requirements
