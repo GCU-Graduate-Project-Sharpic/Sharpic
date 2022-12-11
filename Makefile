@@ -7,4 +7,4 @@ stop-docker:
 	docker compose down -v
 
 delete-docker:
-	docker compose down --rmi=all -v
+	docker compose down --rmi=local -v

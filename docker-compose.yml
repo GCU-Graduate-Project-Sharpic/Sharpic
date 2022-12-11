@@ -29,10 +29,7 @@ services:
       POSTGRES_HOST: postgresql
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: sharpgcu75!@
-      DOMAIN: sharpic.chromato99.com
     restart: always
-    ports:
-      - 8005:8005
 
   web:
     build: 
