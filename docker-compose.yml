@@ -15,8 +15,6 @@ services:
       POSTGRES_PASSWORD: sharpgcu75!@
       POSTGRES_DB: Sharpic
       TZ: Asia/Seoul
-    ports:
-      - 5432:5432
   
   server:
     build: 
@@ -30,16 +28,35 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: sharpgcu75!@
     restart: always
+  
+  imagesr:
+    build:
+      context: ./imagesr
+      dockerfile: ./rocm.Dockerfile
+    devices:
+      - "/dev/kfd:/dev/kfd"
+      - "/dev/dri:/dev/dri"
+    security_opt:
+      - seccomp:unconfined
+    group_add:
+      - video
+    depends_on:
+      - postgresql
+    environment:
+      HOST: "postgresql"
+      DATABASE: "Sharpic"
+      USER_SQL: "postgres"
+      PASS: "sharpgcu75!@"
+      PORT: 5432
+    restart: always
 
   web:
     build: 
       context: ./web
       dockerfile: ./Dockerfile
     restart: always
+    depends_on:
+      - postgresql
+      - imagesr
     ports:
       - 8007:80
-  
-  # imagesr:
-  #   build:
-  #     dockerfile: ./imagesr/Dockerfile
-  #   restart: always
